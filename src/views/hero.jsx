@@ -1,7 +1,13 @@
 import styled from "styled-components";
+import "./hero.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 
 import Kumbh from "../resources/font/static/KumbhSans-Medium.ttf";
-import product from "../resources/images/image-product-1.jpg";
+import product1 from "../resources/images/image-product-1.jpg";
+import product2 from "../resources/images/image-product-2.jpg";
+import product3 from "../resources/images/image-product-3.jpg";
+import product4 from "../resources/images/image-product-4.jpg";
 
 const Container = styled.div`
   width: 100vw;
@@ -31,7 +37,7 @@ const Flex = styled.div`
   column-gap: 3em;
   /* align-items: center; */
   padding: 0.4em;
-  border: 2px blue solid;
+  /* border: 2px blue solid; */
 
   & #product-img {
     width: 100%;
@@ -83,166 +89,40 @@ const Flex = styled.div`
   }
 `;
 
-const Carousel = styled.div`
-  & .carousel-inner img {
-    width: 100%;
-    height: 100%;
-  }
-
-  & #custCarousel .carousel-indicators {
-    position: static;
-    margin-top: 20px;
-  }
-
-  & #custCarousel .carousel-indicators > li {
-    width: 100px;
-  }
-
-  & #custCarousel .carousel-indicators li img {
-    display: block;
-    opacity: 0.5;
-  }
-
-  & #custCarousel .carousel-indicators li.active img {
-    opacity: 1;
-  }
-
-  & #custCarousel .carousel-indicators li:hover img {
-    opacity: 0.75;
-  }
-
-  & .carousel-item img {
-    width: 80%;
-  }
-`;
-
 function Hero() {
   return (
     <Container>
       <Flex>
         <div style={{ width: "30%" }} className="child1">
-          <img src={product} alt="" id="product-img" />
+          {/* <img src={product1} alt="" id="product-img" /> */}
           {/* carousel starts */}
-          <Carousel>
-            <div className="container">
-              <div className="row">
-                <div className="col-md-12">
-                  <div
-                    id="custCarousel"
-                    className="carousel slide"
-                    data-ride="carousel"
-                    align="center"
-                  >
-                    {/* slides  */}
-                    <div className="carousel-inner">
-                      <div className="carousel-item active">
-                        <img
-                          src="https://i.imgur.com/weXVL8M.jpg"
-                          alt="Hills"
-                        />
-                      </div>
-
-                      <div className="carousel-item">
-                        <img
-                          src="https://i.imgur.com/Rpxx6wU.jpg"
-                          alt="Hills"
-                        />
-                      </div>
-
-                      <div className="carousel-item">
-                        <img
-                          src="https://i.imgur.com/83fandJ.jpg"
-                          alt="Hills"
-                        />
-                      </div>
-
-                      <div className="carousel-item">
-                        <img
-                          src="https://i.imgur.com/JiQ9Ppv.jpg"
-                          alt="Hills"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Left right */}
-                    <a
-                      className="carousel-control-prev"
-                      href="#custCarousel"
-                      data-slide="prev"
-                    >
-                      <span className="carousel-control-prev-icon"></span>
-                    </a>
-                    <a
-                      className="carousel-control-next"
-                      href="#custCarousel"
-                      data-slide="next"
-                    >
-                      <span className="carousel-control-next-icon"></span>
-                    </a>
-
-                    {/* Thumbnails */}
-                    <ol className="carousel-indicators list-inline">
-                      <li className="list-inline-item active">
-                        <a
-                          id="carousel-selector-0"
-                          className="selected"
-                          data-slide-to="0"
-                          data-target="#custCarousel"
-                        >
-                          <img
-                            src="https://i.imgur.com/weXVL8M.jpg"
-                            className="img-fluid"
-                          />
-                        </a>
-                      </li>
-
-                      <li className="list-inline-item">
-                        <a
-                          id="carousel-selector-1"
-                          data-slide-to="1"
-                          data-target="#custCarousel"
-                        >
-                          <img
-                            src="https://i.imgur.com/Rpxx6wU.jpg"
-                            className="img-fluid"
-                          />
-                        </a>
-                      </li>
-
-                      <li className="list-inline-item">
-                        <a
-                          id="carousel-selector-2"
-                          data-slide-to="2"
-                          data-target="#custCarousel"
-                        >
-                          <img
-                            src="https://i.imgur.com/83fandJ.jpg"
-                            className="img-fluid"
-                          />
-                        </a>
-                      </li>
-
-                      <li className="list-inline-item">
-                        <a
-                          id="carousel-selector-2"
-                          data-slide-to="3"
-                          data-target="#custCarousel"
-                        >
-                          <img
-                            src="https://i.imgur.com/JiQ9Ppv.jpg"
-                            className="img-fluid"
-                          />
-                        </a>
-                      </li>
-                    </ol>
-                  </div>
-                </div>
-              </div>
+          <Carousel thumbWidth={80} showStatus={false}>
+            <div>
+              <img src={product1} />
+              {/* <p className="legend">Legend 1</p> */}
+            </div>
+            <div>
+              <img src={product2} />
+              {/* <p className="legend">Legend 2</p> */}
+            </div>
+            <div>
+              <img src={product3} />
+              {/* <p className="legend">Legend 3</p> */}
+            </div>
+            <div>
+              <img src={product4} />
+              {/* <p className="legend">Legend 4</p> */}
             </div>
           </Carousel>
           {/* carousel ends */}
         </div>
         <div style={{ width: "50%" }} className="child2">
+          <p
+            className="mt-5"
+            style={{ color: "hsl(26, 100%, 55%)", fontWeight: "bold" }}
+          >
+            SNEAKER COMPANY
+          </p>
           <h3 className="item-title">
             Fall Limited Edition <br />
             Sneakers

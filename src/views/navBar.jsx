@@ -29,7 +29,7 @@ const Flex = styled.div`
   column-gap: 0.5em;
   align-items: center;
   padding: 0.4em;
-  border: 2px blue solid;
+  /* border: 2px blue solid; */
   box-sizing: border-box;
 
   & #logo a:first-child {
