@@ -8,6 +8,7 @@ import product1 from "../resources/images/image-product-1.jpg";
 import product2 from "../resources/images/image-product-2.jpg";
 import product3 from "../resources/images/image-product-3.jpg";
 import product4 from "../resources/images/image-product-4.jpg";
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
   width: 100vw;
@@ -32,7 +33,8 @@ const Container = styled.div`
 
 const Flex = styled.div`
   margin: auto;
-  display: flex;
+  display: ${(props) => (props.modal ? "none" : "flex")};
+  position: relative;
   justify-content: center;
   column-gap: 3em;
   /* align-items: center; */
@@ -89,18 +91,66 @@ const Flex = styled.div`
   }
 `;
 
-function modal() {
-  alert("modal clicked");
-}
+// modal config and styling
+const Modal = styled.div`
+  display: ${(props) => (props.modal ? "flex" : "none")};
+  justify-content: center;
+  align-items: center;
+  /* position: relative; */
+  & #box {
+    width: 30%;
+  }
+`;
 
 function Hero() {
+  const [modal, setModal] = useState(false);
+  function triggerModal() {
+    setModal(!modal);
+    // alert(`value of modal is:${modal}`);
+  }
+
+  useEffect(() => {
+    window.addEventListener("click", (event) => {
+      if (event.target !== "carousel") {
+        setModal(!modal);
+        alert(`target is:${event.target}`);
+      }
+    });
+  }, []);
+
   return (
     <Container>
-      <Flex>
+      <Modal modal={modal}>
+        <div id="box">
+          <Carousel thumbWidth={80} showStatus={false} className="carousel">
+            <div>
+              <img src={product1} />
+              {/* <p className="legend">Legend 1</p> */}
+            </div>
+            <div>
+              <img src={product2} />
+              {/* <p className="legend">Legend 2</p> */}
+            </div>
+            <div>
+              <img src={product3} />
+              {/* <p className="legend">Legend 3</p> */}
+            </div>
+            <div>
+              <img src={product4} />
+              {/* <p className="legend">Legend 4</p> */}
+            </div>
+          </Carousel>
+        </div>
+      </Modal>
+      <Flex modal={modal}>
         <div style={{ width: "40%" }} className="child1">
           {/* <img src={product1} alt="" id="product-img" /> */}
           {/* carousel starts */}
-          <Carousel thumbWidth={80} showStatus={false} onClickItem={modal}>
+          <Carousel
+            thumbWidth={80}
+            showStatus={false}
+            onClickItem={triggerModal}
+          >
             <div>
               <img src={product1} />
               {/* <p className="legend">Legend 1</p> */}
