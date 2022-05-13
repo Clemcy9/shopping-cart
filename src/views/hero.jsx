@@ -89,14 +89,18 @@ const Flex = styled.div`
   }
 `;
 
+function modal() {
+  alert("modal clicked");
+}
+
 function Hero() {
   return (
     <Container>
       <Flex>
-        <div style={{ width: "30%" }} className="child1">
+        <div style={{ width: "40%" }} className="child1">
           {/* <img src={product1} alt="" id="product-img" /> */}
           {/* carousel starts */}
-          <Carousel thumbWidth={80} showStatus={false}>
+          <Carousel thumbWidth={80} showStatus={false} onClickItem={modal}>
             <div>
               <img src={product1} />
               {/* <p className="legend">Legend 1</p> */}
