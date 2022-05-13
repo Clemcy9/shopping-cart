@@ -11,6 +11,8 @@ import product1 from "../resources/images/image-product-1.jpg";
 import product2 from "../resources/images/image-product-2.jpg";
 import product3 from "../resources/images/image-product-3.jpg";
 import product4 from "../resources/images/image-product-4.jpg";
+import closeBtn from "../resources/images/icon-close.svg";
+
 import { useEffect, useState } from "react";
 
 const Container = styled.div`
@@ -36,7 +38,7 @@ const Container = styled.div`
 
 const Flex = styled.div`
   margin: auto;
-  display: ${(props) => (props.modal ? "none" : "flex")};
+  display: flex;
   position: relative;
   justify-content: center;
   column-gap: 3em;
@@ -94,17 +96,6 @@ const Flex = styled.div`
   }
 `;
 
-// modal config and styling
-const Modal1 = styled.div`
-  display: flex: block;;
-  justify-content: center;
-  align-items: center;
-  /* position: relative; */
-  & #box {
-    width: 30%;
-  }
-`;
-
 const customStyles = {
   content: {
     top: "50%",
@@ -135,7 +126,6 @@ function Hero() {
     subtitle.style.color = "#f00";
   }
 
-<<<<<<< HEAD
   function closeModal() {
     setIsOpen(false);
   }
@@ -162,22 +152,6 @@ function Hero() {
             }}
           />
           <Carousel thumbWidth={80} showStatus={false}>
-=======
-  useEffect(() => {
-    window.addEventListener("click", (event) => {
-      if (event.target !== "carousel") {
-        setModal(!modal);
-        alert(`target is:${event.target}`);
-      }
-    });
-  }, []);
-
-  return (
-    <Container>
-      <Modal modal={modal}>
-        <div id="box">
-          <Carousel thumbWidth={80} showStatus={false} className="carousel">
->>>>>>> parent of 5c3a324 (not able to implement backdrop on my own created modal, switching to using react-modal component library)
             <div>
               <img src={product1} />
               {/* <p className="legend">Legend 1</p> */}
