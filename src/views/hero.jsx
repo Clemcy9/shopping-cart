@@ -1,4 +1,7 @@
+import React from "react";
+import ReactDOM from "react-dom";
 import styled from "styled-components";
+import Modal from "react-modal";
 import "./hero.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
@@ -94,8 +97,8 @@ const Flex = styled.div`
 `;
 
 // modal config and styling
-const Modal = styled.div`
-  display: ${(props) => (props.modal ? "flex" : "none")};
+const Modal1 = styled.div`
+  display: flex: block;;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -126,34 +129,62 @@ const Modal = styled.div`
   }
 `;
 
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    width: "33%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    border: "none",
+    padding: "0",
+    height: "auto",
+  },
+};
+
 function Hero() {
-  const [modal, setModal] = useState(false);
-  function triggerModal() {
-    setModal(!modal);
-    // alert(`value of modal is:${modal}`);
+  // new import modal
+
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
   }
 
-  // useEffect(() => {
-  //   window.addEventListener("click", (event) => {
-  //     if (event.target !== "carousel") {
-  //       // setModal(!modal);
-  //       // alert(`target is:${event.target}`);
-  //     }
-  //   });
-  // }, []);
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   return (
     <Container>
-      <Modal modal={modal}>
-        <div id="box">
-          <div id="closeBtn">
-            <img
-              src={closeBtn}
-              alt="closeBtn"
-              onClick={() => setModal(!modal)}
-            />
-          </div>
-          <Carousel thumbWidth={80} showStatus={false} className="carousel">
+      <div>
+        {/* <button onClick={openModal}>Open Modal</button> */}
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <img
+            src={closeBtn}
+            onClick={closeModal}
+            alt=""
+            style={{
+              position: "absolute",
+              right: "0",
+              top: "0",
+            }}
+          />
+          <Carousel thumbWidth={80} showStatus={false}>
             <div>
               <img src={product1} />
               {/* <p className="legend">Legend 1</p> */}
@@ -171,17 +202,14 @@ function Hero() {
               {/* <p className="legend">Legend 4</p> */}
             </div>
           </Carousel>
-        </div>
-      </Modal>
-      <Flex modal={modal}>
+        </Modal>
+      </div>
+
+      <Flex>
         <div style={{ width: "40%" }} className="child1">
           {/* <img src={product1} alt="" id="product-img" /> */}
           {/* carousel starts */}
-          <Carousel
-            thumbWidth={80}
-            showStatus={false}
-            onClickItem={triggerModal}
-          >
+          <Carousel thumbWidth={80} showStatus={false} onClickItem={openModal}>
             <div>
               <img src={product1} />
               {/* <p className="legend">Legend 1</p> */}
