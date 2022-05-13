@@ -8,6 +8,8 @@ import product1 from "../resources/images/image-product-1.jpg";
 import product2 from "../resources/images/image-product-2.jpg";
 import product3 from "../resources/images/image-product-3.jpg";
 import product4 from "../resources/images/image-product-4.jpg";
+import closeBtn from "../resources/images/icon-close.svg";
+
 import { useEffect, useState } from "react";
 
 const Container = styled.div`
@@ -33,7 +35,7 @@ const Container = styled.div`
 
 const Flex = styled.div`
   margin: auto;
-  display: ${(props) => (props.modal ? "none" : "flex")};
+  display: flex;
   position: relative;
   justify-content: center;
   column-gap: 3em;
@@ -96,9 +98,31 @@ const Modal = styled.div`
   display: ${(props) => (props.modal ? "flex" : "none")};
   justify-content: center;
   align-items: center;
+  position: absolute;
+  z-index: 1;
   /* position: relative; */
   & #box {
     width: 30%;
+  }
+  & #closeBtn {
+    position: relative;
+    top: 0;
+    right: 0;
+    /* border: 2px red solid; */
+  }
+
+  & #closeBtn img {
+    position: absolute;
+    top: -0.5em;
+    right: 0;
+    /* border: 2px red solid; */
+  }
+
+  & #closeBtn img:hover {
+    cursor: pointer;
+    padding-right: 1px;
+
+    padding-bottom: 2px;
   }
 `;
 
@@ -109,19 +133,26 @@ function Hero() {
     // alert(`value of modal is:${modal}`);
   }
 
-  useEffect(() => {
-    window.addEventListener("click", (event) => {
-      if (event.target !== "carousel") {
-        setModal(!modal);
-        alert(`target is:${event.target}`);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("click", (event) => {
+  //     if (event.target !== "carousel") {
+  //       // setModal(!modal);
+  //       // alert(`target is:${event.target}`);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <Container>
       <Modal modal={modal}>
         <div id="box">
+          <div id="closeBtn">
+            <img
+              src={closeBtn}
+              alt="closeBtn"
+              onClick={() => setModal(!modal)}
+            />
+          </div>
           <Carousel thumbWidth={80} showStatus={false} className="carousel">
             <div>
               <img src={product1} />
