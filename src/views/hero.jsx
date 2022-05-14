@@ -7,6 +7,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from "react-responsive-carousel";
 
 import Kumbh from "../resources/font/static/KumbhSans-Medium.ttf";
+
 import product1 from "../resources/images/image-product-1.jpg";
 import product2 from "../resources/images/image-product-2.jpg";
 import product3 from "../resources/images/image-product-3.jpg";
@@ -14,6 +15,7 @@ import product4 from "../resources/images/image-product-4.jpg";
 import closeBtn from "../resources/images/icon-close.svg";
 
 import { useEffect, useState } from "react";
+import Cart from "../components/cart";
 
 const Container = styled.div`
   width: 100vw;
@@ -113,7 +115,6 @@ const customStyles = {
 
 function Hero() {
   // new import modal
-
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -129,6 +130,9 @@ function Hero() {
   function closeModal() {
     setIsOpen(false);
   }
+
+  // toggle for cart
+  const [show, setShow] = useState(false);
 
   return (
     <Container>
@@ -176,7 +180,12 @@ function Hero() {
         <div style={{ width: "40%" }} className="child1">
           {/* <img src={product1} alt="" id="product-img" /> */}
           {/* carousel starts */}
-          <Carousel thumbWidth={80} showStatus={false} onClickItem={openModal}>
+          <Carousel
+            thumbWidth={80}
+            showStatus={false}
+            showArrows={false}
+            onClickItem={openModal}
+          >
             <div>
               <img src={product1} />
               {/* <p className="legend">Legend 1</p> */}
@@ -197,9 +206,14 @@ function Hero() {
           {/* carousel ends */}
         </div>
         <div style={{ width: "50%" }} className="child2">
+          <Cart show={show} id="hero"></Cart>
           <p
             className="mt-5"
-            style={{ color: "hsl(26, 100%, 55%)", fontWeight: "bold" }}
+            style={{
+              color: "hsl(26, 100%, 55%)",
+              fontWeight: "bold",
+              zIndex: "-1",
+            }}
           >
             SNEAKER COMPANY
           </p>
@@ -241,7 +255,12 @@ function Hero() {
               </button>
             </div>
             <div id="cart-btn">
-              <button className="btn btn-warning btn-l">Add to cart</button>
+              <button
+                className="btn btn-warning btn-l"
+                onClick={() => setShow(!show)}
+              >
+                Add to cart
+              </button>
             </div>
           </div>
         </div>
