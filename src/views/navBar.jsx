@@ -90,13 +90,13 @@ const Flex = styled.div`
   }
 `;
 
-function Nav({ cartItems }) {
+function Nav({ cartItems, emptyCart }) {
   // toggle for cart
   const [show, setShow] = useState(false);
 
   return (
     <Container>
-      <Cart show={show} cartItems={cartItems}></Cart>
+      <Cart show={show} cartItems={cartItems} emptyCart={emptyCart}></Cart>
       <Flex>
         <Flex id="logo">
           <a href="#">

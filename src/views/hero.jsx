@@ -113,7 +113,7 @@ const customStyles = {
   },
 };
 
-function Hero({ increaseCart, decreaseCart, cartItems }) {
+function Hero({ increaseCart, decreaseCart, cartItems, emptyCart }) {
   // new import modal
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -206,7 +206,12 @@ function Hero({ increaseCart, decreaseCart, cartItems }) {
           {/* carousel ends */}
         </div>
         <div style={{ width: "50%" }} className="child2">
-          <Cart show={show} id="hero" cartItems={cartItems}></Cart>
+          <Cart
+            show={show}
+            id="hero"
+            cartItems={cartItems}
+            emptyCart={emptyCart}
+          ></Cart>
           <p
             className="mt-5"
             style={{

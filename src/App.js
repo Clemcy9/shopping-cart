@@ -13,15 +13,25 @@ function App() {
   }
 
   function decreaseCart() {
-    setCartItems((previous) => previous - 1);
+    setCartItems((previous) => {
+      if (previous <= 0) {
+        return (previous = 0);
+      }
+      return (previous -= 1);
+    });
+  }
+
+  function emptyCart() {
+    setCartItems(0);
   }
 
   return (
     <div>
-      <Nav cartItems={cartItems}></Nav>
+      <Nav cartItems={cartItems} emptyCart={emptyCart}></Nav>
       <Hero
         increaseCart={increaseCart}
         decreaseCart={decreaseCart}
+        emptyCart={emptyCart}
         cartItems={cartItems}
       ></Hero>
       {/* <Loading></Loading> */}
