@@ -19,7 +19,11 @@ function App() {
   return (
     <div>
       <Nav cartItems={cartItems}></Nav>
-      <Hero increaseCart={increaseCart} decreaseCart={decreaseCart}></Hero>
+      <Hero
+        increaseCart={increaseCart}
+        decreaseCart={decreaseCart}
+        cartItems={cartItems}
+      ></Hero>
       {/* <Loading></Loading> */}
     </div>
   );

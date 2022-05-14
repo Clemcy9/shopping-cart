@@ -6,7 +6,7 @@ import Kumbh from "../resources/font/static/KumbhSans-Medium.ttf";
 import product1 from "../resources/images/image-product-1.jpg";
 import bin from "../resources/images/icon-delete.svg";
 
-function Cart({ show, id }) {
+function Cart({ show, id, cartItems }) {
   const Container = styled.div`
     @font-face {
       font-family: "Kumbh";
@@ -59,7 +59,7 @@ function Cart({ show, id }) {
   `;
 
   const Content = styled.div`
-    display: flex;
+    display: ${(props) => (props.cartItems ? "flex" : "none")};
     justify-content: space-between;
     column-gap: 10px;
     align-items: center;
@@ -83,17 +83,24 @@ function Cart({ show, id }) {
     <Container show={show} id={id}>
       <h6>Cart</h6>
       <hr />
+      {cartItems > 0 && (
+        <>
+          <Content cartItems={cartItems}>
+            <img src={product1} alt="" />
+            <p>
+              Fall Limited Edition Sneakers <br />
+              $125.00 x {cartItems}
+            </p>
+            <img src={bin} alt="" id="bin" />
+          </Content>
+          <div>
+            <CartBtn className="btn">Checkout</CartBtn>
+          </div>
+        </>
+      )}
       <Content>
-        <img src={product1} alt="" />
-        <p>
-          Fall Limited Edition Sneakers <br />
-          $125.00{" "}
-        </p>
-        <img src={bin} alt="" id="bin" />
+        <p>Your cart is empty</p>
       </Content>
-      <div>
-        <CartBtn className="btn">Checkout</CartBtn>
-      </div>
     </Container>
   );
 }

@@ -96,7 +96,7 @@ function Nav({ cartItems }) {
 
   return (
     <Container>
-      <Cart show={show}></Cart>
+      <Cart show={show} cartItems={cartItems}></Cart>
       <Flex>
         <Flex id="logo">
           <a href="#">

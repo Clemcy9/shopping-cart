@@ -113,7 +113,7 @@ const customStyles = {
   },
 };
 
-function Hero() {
+function Hero({ increaseCart, decreaseCart, cartItems }) {
   // new import modal
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -206,7 +206,7 @@ function Hero() {
           {/* carousel ends */}
         </div>
         <div style={{ width: "50%" }} className="child2">
-          <Cart show={show} id="hero"></Cart>
+          <Cart show={show} id="hero" cartItems={cartItems}></Cart>
           <p
             className="mt-5"
             style={{
@@ -244,13 +244,13 @@ function Hero() {
           <p id="slash-price">$250.00</p>
           <div className="d-flex my-4">
             <div className="btn-group" role="group">
-              <button type="button" class="btn ">
+              <button type="button" class="btn " onClick={decreaseCart}>
                 -
               </button>
               <button type="button" class="btn">
-                0
+                {cartItems}
               </button>
-              <button type="button" class="btn ">
+              <button type="button" class="btn " onClick={increaseCart}>
                 +
               </button>
             </div>
