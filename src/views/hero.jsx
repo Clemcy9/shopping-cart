@@ -270,8 +270,9 @@ const Flex = styled.div`
 const customStyles = {
   content: {
     top: "50%",
+    backgroundColor: "",
     left: "50%",
-    width: "33%",
+    width: "40.3%",
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",

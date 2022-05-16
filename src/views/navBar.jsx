@@ -29,8 +29,8 @@ const Container = styled.div`
     color: black;
     /* box-sizing: border-box; */
   }
-  @media ${device.mobileS} {
-    padding: 1em 2em;
+  @media ${device.mobileL} {
+    padding: 1em 1em;
   }
 `;
 
