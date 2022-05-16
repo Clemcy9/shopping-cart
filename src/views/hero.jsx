@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import "./hero.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import { device } from "../components/mediaBreakPoints";
 
 import Kumbh from "../resources/font/static/KumbhSans-Medium.ttf";
 import product1 from "../resources/images/image-product-1.jpg";
@@ -17,8 +18,10 @@ import { useEffect, useState } from "react";
 
 const Container = styled.div`
   width: 100vw;
+  max-width: 1600px;
+  margin: 0 auto;
   padding: auto;
-  padding: 1em 2em;
+  /* padding: 1em 2em; */
   box-sizing: border-box;
   @font-face {
     font-family: "Kumbh";
@@ -34,17 +37,26 @@ const Container = styled.div`
     font-size: small;
     color: hsl(219, 9%, 45%);
   }
+  @media ${device.mobileS} {
+    padding: 1em 2em;
+  }
 `;
 
 const Flex = styled.div`
   margin: auto;
   display: flex;
+  flex-direction: column;
   position: relative;
   justify-content: center;
   column-gap: 3em;
   /* align-items: center; */
   padding: 0.4em;
   /* border: 2px blue solid; */
+
+  & .child1,
+  .child2 {
+    width: 100%;
+  }
 
   & #product-img {
     width: 100%;
@@ -65,10 +77,22 @@ const Flex = styled.div`
     font-size: 1em;
   }
 
+  & .company-name {
+    color: hsl(26, 100%, 55%);
+    font-weight: bold;
+    font-size: 1em;
+  }
+
   & .item-description,
   .item-title {
     /* background-color: red; */
-    margin-top: 1em;
+    margin-top: 0.2em;
+  }
+
+  & .price {
+    color: hsl(26, 100%, 55%);
+    background-color: hsl(25, 100%, 94%);
+    font-size: 10px;
   }
 
   & #slash-price {
@@ -76,6 +100,14 @@ const Flex = styled.div`
     text-decoration: line-through;
     font-size: 10px;
   }
+
+  & .buttons {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+    column-gap: 0.5em;
+  }
+
   & .btn-group button {
     background-color: hsl(223, 64%, 98%);
     color: hsl(26, 100%, 55%);
@@ -85,14 +117,151 @@ const Flex = styled.div`
   }
 
   & #cart-btn button {
-    margin-left: 1em;
-    width: 12em;
     background-color: hsl(26, 100%, 55%);
     color: hsl(0, 0%, 100%);
     border-radius: 0.4em;
+    width: 100%;
   }
   & #cart-btn button:hover {
     box-shadow: 0px 2px 15px 0px hsl(26, 100%, 55%);
+  }
+
+  @media ${device.mobileL} {
+    flex-direction: column;
+
+    & .child1,
+    .child2 {
+      width: 100%;
+      background-color: blue;
+    }
+    & .child2 {
+      padding: 0 1.5em;
+    }
+  }
+
+  @media (min-width: 525px) and (max-width: 768px) {
+    flex-direction: row;
+    column-gap: 1em;
+    & .child1 {
+      width: 50%;
+      background-color: red;
+    }
+    & .child2 {
+      width: 50%;
+      background-color: red;
+      padding-top: 1em;
+    }
+
+    & .item-description,
+    .item-title {
+      margin-top: 1em;
+    }
+    & .company-name {
+      font-size: 1em;
+    }
+
+    & .buttons {
+      flex-direction: row;
+    }
+    & #cart-btn,
+    .btn-group {
+      width: 50%;
+    }
+  }
+  @media ${device.tablet} {
+    flex-direction: row;
+
+    & .child1,
+    .child2 {
+      width: 45%;
+      background-color: pink;
+    }
+
+    & .child2 {
+      padding-top: 1.8em;
+    }
+
+    & .item-title {
+      font-size: 2.2em;
+      font-weight: bolder;
+    }
+    & .item-description,
+    p {
+      font-size: 1.2em;
+    }
+
+    & .price {
+      font-size: 15px;
+    }
+
+    & .amount:not(p) {
+      font-size: 1.5em;
+    }
+    & #slash-price {
+      font-size: 20px;
+    }
+
+    & .buttons {
+      flex-direction: row;
+      column-gap: 1em;
+    }
+    & #cart-btn,
+    .btn-group {
+      width: 50%;
+    }
+    & #cart-btn button {
+      width: 12em;
+    }
+  }
+
+  @media ${device.LaptopL} {
+    flex-direction: row;
+
+    & .child1,
+    .child2 {
+      width: 45%;
+      background-color: yellow;
+    }
+
+    & .child2 {
+      padding-top: 1.8em;
+    }
+
+    & .company-name {
+      font-size: 1.5em;
+    }
+
+    & .item-title {
+      font-size: 3.2em;
+      font-weight: bolder;
+    }
+    & .item-description,
+    p {
+      font-size: 1.5em;
+    }
+
+    & .price {
+      font-size: 0.7em;
+    }
+    & .amount:not(p) {
+      font-size: 2em;
+    }
+    & #slash-price {
+      font-size: 20px;
+    }
+
+    & .buttons {
+      flex-direction: row;
+      column-gap: 1.3em;
+    }
+    & #cart-btn,
+    .btn-group {
+      width: 50%;
+    }
+    & #cart-btn button,
+    .btn-group {
+      width: 17em;
+    }
   }
 `;
 
@@ -173,7 +342,7 @@ function Hero() {
       </div>
 
       <Flex>
-        <div style={{ width: "40%" }} className="child1">
+        <div className="child1">
           {/* <img src={product1} alt="" id="product-img" /> */}
           {/* carousel starts */}
           <Carousel thumbWidth={80} showStatus={false} onClickItem={openModal}>
@@ -196,52 +365,38 @@ function Hero() {
           </Carousel>
           {/* carousel ends */}
         </div>
-        <div style={{ width: "50%" }} className="child2">
-          <p
-            className="mt-5"
-            style={{ color: "hsl(26, 100%, 55%)", fontWeight: "bold" }}
-          >
-            SNEAKER COMPANY
-          </p>
+        <div className="child2">
+          <p className="company-name">SNEAKER COMPANY</p>
           <h3 className="item-title">
             Fall Limited Edition <br />
             Sneakers
           </h3>
           <p className="item-description">
-            These low-profile sneakers are your perfect casual wear <br />
-            companion. Featuring a duraable rubber outer sole, they'll <br />
-            withstand everthing the weather can offer
+            These low-profile sneakers are your perfect casual wear companion.
+            Featuring a duraable rubber outer sole, they'll withstand everthing
+            the weather can offer
           </p>
           <div>
-            <h5 className="mb-0">
+            <h5 className="mb-0 amount">
               $125.00
-              <p
-                style={{
-                  color: "hsl(26, 100%, 55%)",
-                  backgroundColor: "hsl(25, 100%, 94%)",
-                  fontSize: "10px",
-                }}
-                class="badge badge-warning mx-3 my-2"
-              >
-                50%
-              </p>
+              <p className="badge mx-3 my-2 price">50%</p>
             </h5>
           </div>
           <p id="slash-price">$250.00</p>
-          <div className="d-flex my-4">
+          <div className="my-4 buttons">
             <div className="btn-group" role="group">
-              <button type="button" class="btn ">
+              <button type="button" className="btn ">
                 -
               </button>
-              <button type="button" class="btn">
+              <button type="button" className="btn">
                 0
               </button>
-              <button type="button" class="btn ">
+              <button type="button" className="btn ">
                 +
               </button>
             </div>
             <div id="cart-btn">
-              <button className="btn btn-warning btn-l">Add to cart</button>
+              <button className="btn btn-warning">Add to cart</button>
             </div>
           </div>
         </div>
