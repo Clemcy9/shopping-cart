@@ -8,6 +8,7 @@ import { Carousel } from "react-responsive-carousel";
 import { device } from "../components/mediaBreakPoints";
 
 import Kumbh from "../resources/font/static/KumbhSans-Medium.ttf";
+
 import product1 from "../resources/images/image-product-1.jpg";
 import product2 from "../resources/images/image-product-2.jpg";
 import product3 from "../resources/images/image-product-3.jpg";
@@ -15,6 +16,7 @@ import product4 from "../resources/images/image-product-4.jpg";
 import closeBtn from "../resources/images/icon-close.svg";
 
 import { useEffect, useState } from "react";
+import Cart from "../components/cart";
 
 const Container = styled.div`
   width: 100vw;
@@ -280,9 +282,8 @@ const customStyles = {
   },
 };
 
-function Hero() {
+function Hero({ increaseCart, decreaseCart, cartItems, emptyCart }) {
   // new import modal
-
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -298,6 +299,9 @@ function Hero() {
   function closeModal() {
     setIsOpen(false);
   }
+
+  // toggle for cart
+  const [show, setShow] = useState(false);
 
   return (
     <Container>
@@ -345,7 +349,12 @@ function Hero() {
         <div className="child1">
           {/* <img src={product1} alt="" id="product-img" /> */}
           {/* carousel starts */}
-          <Carousel thumbWidth={80} showStatus={false} onClickItem={openModal}>
+          <Carousel
+            thumbWidth={80}
+            showStatus={false}
+            showArrows={false}
+            onClickItem={openModal}
+          >
             <div>
               <img src={product1} />
               {/* <p className="legend">Legend 1</p> */}
@@ -366,6 +375,12 @@ function Hero() {
           {/* carousel ends */}
         </div>
         <div className="child2">
+          <Cart
+            show={show}
+            id="hero"
+            cartItems={cartItems}
+            emptyCart={emptyCart}
+          ></Cart>
           <p className="company-name">SNEAKER COMPANY</p>
           <h3 className="item-title">
             Fall Limited Edition <br />
@@ -385,18 +400,23 @@ function Hero() {
           <p id="slash-price">$250.00</p>
           <div className="my-4 buttons">
             <div className="btn-group" role="group">
-              <button type="button" className="btn ">
+              <button type="button" className="btn " onClick={decreaseCart}>
                 -
               </button>
               <button type="button" className="btn">
-                0
+                {cartItems}
               </button>
-              <button type="button" className="btn ">
+              <button type="button" className="btn " onClick={increaseCart}>
                 +
               </button>
             </div>
             <div id="cart-btn">
-              <button className="btn btn-warning">Add to cart</button>
+              <button
+                className="btn btn-warning"
+                onClick={() => setShow(!show)}
+              >
+                Add to cart
+              </button>
             </div>
           </div>
         </div>

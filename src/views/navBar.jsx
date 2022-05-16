@@ -6,17 +6,19 @@ import menu from "../resources/images/icon-menu.svg";
 import Kumbh from "../resources/font/static/KumbhSans-Medium.ttf";
 
 import { device } from "../components/mediaBreakPoints";
+import { useState } from "react";
+import Cart from "../components/cart";
 
 const Container = styled.div`
   & * {
     box-sizing: border-box;
   }
 
-
   margin: 0 auto;
   box-sizing: border-box;
   min-width: fit-content;
   max-width: 1660px;
+  position: relative;
   @font-face {
     font-family: "Kumbh";
     src: url(${Kumbh});
@@ -29,8 +31,6 @@ const Container = styled.div`
   }
   @media ${device.mobileS} {
     padding: 1em 2em;
-  }
- 
   }
 `;
 
@@ -99,12 +99,42 @@ const Flex = styled.div`
     & a {
       font-size: 1.43em;
     }
+    & #cart {
+      position: relative;
+      cursor: pointer;
+      padding: 4px;
+      width: fit-content;
+      height: fit-content;
+    }
+
+    & #cart:hover {
+      border: 1px solid hsl(26, 100%, 55%);
+      border-radius: 50%;
+    }
+
+    & #cart span {
+      position: absolute;
+      top: -7px;
+      right: -12px;
+      background-color: hsl(26, 100%, 55%);
+      color: white;
+    }
+
+    & #avatar:hover {
+      border: 2px solid hsl(26, 100%, 55%);
+      border-radius: 50%;
+      cursor: pointer;
+    }
   }
 `;
 
-function Nav() {
+function Nav({ cartItems, emptyCart }) {
+  // toggle for cart
+  const [show, setShow] = useState(false);
+
   return (
     <Container>
+      <Cart show={show} cartItems={cartItems} emptyCart={emptyCart}></Cart>
       <Flex>
         <Flex id="logo">
           <div id="toggleIcon">
@@ -119,12 +149,14 @@ function Nav() {
           <a href="#">About</a>
           <a href="#">Contact</a>
         </Flex>
-        <Flex id="cartUser">
-          <a href="#">
+        <Flex>
+          <div id="cart" onClick={() => setShow(!show)}>
             <img src={cart} alt="" />
-          </a>
+            <span className="badge badge-pill badge-warning">{cartItems}</span>
+          </div>
+
           <a href="#">
-            <img src={avatar} style={{ width: "40px" }} alt="" />
+            <img src={avatar} style={{ width: "40px" }} alt="" id="avatar" />
           </a>
         </Flex>
       </Flex>
