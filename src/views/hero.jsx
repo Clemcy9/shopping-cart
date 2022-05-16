@@ -134,7 +134,7 @@ const Flex = styled.div`
     & .child1,
     .child2 {
       width: 100%;
-      background-color: blue;
+      /* background-color: blue; */
     }
     & .child2 {
       padding: 0 1.5em;
@@ -146,11 +146,11 @@ const Flex = styled.div`
     column-gap: 1em;
     & .child1 {
       width: 50%;
-      background-color: red;
+      /* background-color: red; */
     }
     & .child2 {
       width: 50%;
-      background-color: red;
+      /* background-color: red; */
       padding-top: 1em;
     }
 
@@ -176,7 +176,7 @@ const Flex = styled.div`
     & .child1,
     .child2 {
       width: 45%;
-      background-color: pink;
+      /* background-color: pink; */
     }
 
     & .child2 {
@@ -222,7 +222,7 @@ const Flex = styled.div`
     & .child1,
     .child2 {
       width: 45%;
-      background-color: yellow;
+      /* background-color: yellow; */
     }
 
     & .child2 {

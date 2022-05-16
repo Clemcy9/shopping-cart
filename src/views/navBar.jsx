@@ -67,11 +67,11 @@ const Flex = styled.div`
   }
 
   & #logo > img {
-    width: 70px;
+    width: 100px;
     height: 20px;
   }
 
-  @media (min-width: 660px) and (max-width: 768px) {
+  @media (min-width: 680px) and (max-width: 768px) {
     column-gap: 0.5em;
     & #logo a:not(:first-child) {
       display: block;
@@ -81,7 +81,7 @@ const Flex = styled.div`
     }
 
     & a {
-      font-size: 1.12em;
+      font-size: 1.1em;
     }
   }
   @media ${device.tablet} {
@@ -96,8 +96,12 @@ const Flex = styled.div`
     & #toggleIcon {
       display: none;
     }
+    & #logo > img {
+      width: 140px;
+      height: 30px;
+    }
     & a {
-      font-size: 1.43em;
+      font-size: 1.23em;
     }
     & #cart {
       position: relative;
@@ -152,7 +156,13 @@ function Nav({ cartItems, emptyCart }) {
         <Flex>
           <div id="cart" onClick={() => setShow(!show)}>
             <img src={cart} alt="" />
-            <span className="badge badge-pill badge-warning">{cartItems}</span>
+            {cartItems ? (
+              <span className="badge badge-pill badge-warning">
+                {cartItems}
+              </span>
+            ) : (
+              ""
+            )}
           </div>
 
           <a href="#">
