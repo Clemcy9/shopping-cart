@@ -6,8 +6,9 @@ import menu from "../resources/images/icon-menu.svg";
 import Kumbh from "../resources/font/static/KumbhSans-Medium.ttf";
 
 import { device } from "../components/mediaBreakPoints";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Cart from "../components/cart";
+import { CartContext, ToggleContext } from "../components/useCartToggle";
 
 const Container = styled.div`
   & * {
@@ -133,12 +134,13 @@ const Flex = styled.div`
 `;
 
 function Nav({ cartItems, emptyCart }) {
-  // toggle for cart
-  const [show, setShow] = useState(false);
+  // toggle for cart context api
+  const isCart = useContext(CartContext);
+  const cartToggle = useContext(ToggleContext);
 
   return (
     <Container>
-      <Cart show={show} cartItems={cartItems} emptyCart={emptyCart}></Cart>
+      <Cart cartItems={cartItems} emptyCart={emptyCart}></Cart>
       <Flex>
         <Flex id="logo">
           <div id="toggleIcon">
@@ -154,7 +156,7 @@ function Nav({ cartItems, emptyCart }) {
           <a href="#">Contact</a>
         </Flex>
         <Flex>
-          <div id="cart" onClick={() => setShow(!show)}>
+          <div id="cart" onClick={() => cartToggle(!isCart)}>
             <img src={cart} alt="" />
             {cartItems ? (
               <span className="badge badge-pill badge-warning">

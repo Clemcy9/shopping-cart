@@ -1,12 +1,17 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useContext } from "react";
 
 import Kumbh from "../resources/font/static/KumbhSans-Medium.ttf";
 
 import product1 from "../resources/images/image-product-1.jpg";
 import bin from "../resources/images/icon-delete.svg";
+import { UseCartToggle, CartContext, ToggleContext } from "./useCartToggle";
 
-function Cart({ show, id, cartItems, emptyCart }) {
+function Cart({ id, cartItems, emptyCart }) {
+  //using context api for toggling show
+  const show = useContext(CartContext);
+  // const toggleShow = useContext(ToggleContext);
+
   const Container = styled.div`
     @font-face {
       font-family: "Kumbh";
@@ -78,6 +83,8 @@ function Cart({ show, id, cartItems, emptyCart }) {
       padding-top: 4px;
     }
   `;
+
+  console.log(`this is show from cart ${show}`);
 
   return (
     <Container show={show} id={id}>

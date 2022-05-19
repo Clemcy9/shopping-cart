@@ -4,6 +4,7 @@ import Loading from "./components/loading";
 import Nav from "./views/navBar";
 import Hero from "./views/hero";
 import { useState } from "react";
+import { UseCartToggle } from "./components/useCartToggle";
 
 function App() {
   const [cartItems, setCartItems] = useState(0);
@@ -26,7 +27,7 @@ function App() {
   }
 
   return (
-    <div>
+    <UseCartToggle>
       <Nav cartItems={cartItems} emptyCart={emptyCart}></Nav>
       <Hero
         increaseCart={increaseCart}
@@ -35,7 +36,7 @@ function App() {
         cartItems={cartItems}
       ></Hero>
       {/* <Loading></Loading> */}
-    </div>
+    </UseCartToggle>
   );
 }
 

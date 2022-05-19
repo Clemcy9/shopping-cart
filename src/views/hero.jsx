@@ -1,5 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Modal from "react-modal";
 import "./hero.css";
@@ -15,8 +14,9 @@ import product3 from "../resources/images/image-product-3.jpg";
 import product4 from "../resources/images/image-product-4.jpg";
 import closeBtn from "../resources/images/icon-close.svg";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Cart from "../components/cart";
+import { CartContext, ToggleContext } from "../components/useCartToggle";
 
 const Container = styled.div`
   width: 100vw;
@@ -284,25 +284,26 @@ const customStyles = {
 };
 
 function Hero({ increaseCart, decreaseCart, cartItems, emptyCart }) {
+  // toggle for cart context api
+  const show = useContext(CartContext);
+  const setShow = useContext(ToggleContext);
+
   // new import modal
   let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  function openModal() {
+  const openModal = function () {
     setIsOpen(true);
-  }
+  };
 
-  function afterOpenModal() {
+  const afterOpenModal = function () {
     // references are now sync'd and can be accessed.
     subtitle.style.color = "#f00";
-  }
+  };
 
-  function closeModal() {
+  const closeModal = function () {
     setIsOpen(false);
-  }
-
-  // toggle for cart
-  const [show, setShow] = useState(false);
+  };
 
   return (
     <Container>
@@ -376,12 +377,6 @@ function Hero({ increaseCart, decreaseCart, cartItems, emptyCart }) {
           {/* carousel ends */}
         </div>
         <div className="child2">
-          <Cart
-            show={show}
-            id="hero"
-            cartItems={cartItems}
-            emptyCart={emptyCart}
-          ></Cart>
           <p className="company-name">SNEAKER COMPANY</p>
           <h3 className="item-title">
             Fall Limited Edition <br />
@@ -389,7 +384,7 @@ function Hero({ increaseCart, decreaseCart, cartItems, emptyCart }) {
           </h3>
           <p className="item-description">
             These low-profile sneakers are your perfect casual wear companion.
-            Featuring a duraable rubber outer sole, they'll withstand everthing
+            Featuring a durable rubber outer sole, they'll withstand everything
             the weather can offer
           </p>
           <div>
