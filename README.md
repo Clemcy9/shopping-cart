@@ -62,7 +62,7 @@ Users should be able to:
 ### What I learned
 Learnt how to use context api. 
 
-created a context api jsx file and exported it
+i.created a context api jsx file and exported it
 
 
 ```js
@@ -86,7 +86,7 @@ function UseCartToggle({ children }) {
 export { UseCartToggle, CartContext, ToggleContext };
 ```
 
-imported the custom created context api and used in app component
+ii.imported the custom created context api and used in app component
 
 ```js
 <UseCartToggle>
@@ -101,6 +101,20 @@ imported the custom created context api and used in app component
     </UseCartToggle>
 ```
 
+Learnt to implement sytling in styled components using props
+
+```js
+  const MenuIcon = styled.div`
+    background-image: url(${(props) => (props.show ? close : menu)});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    /* background-color: red; */
+  `;
+```
 If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
 
 **Note: Delete this note and the content within this section and replace with your own learnings.**

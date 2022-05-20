@@ -9,6 +9,7 @@ import { device } from "../components/mediaBreakPoints";
 import { useContext, useState } from "react";
 import Cart from "../components/cart";
 import { CartContext, ToggleContext } from "../components/useCartToggle";
+import DropMenu from "./dropdown-menu";
 
 const Container = styled.div`
   & * {
@@ -142,11 +143,11 @@ function Nav({ cartItems, emptyCart }) {
     <Container>
       <Cart cartItems={cartItems} emptyCart={emptyCart}></Cart>
       <Flex>
+        <div id="toggleIcon">
+          {/* <img src={menu} alt="" /> */}
+          <DropMenu />
+        </div>
         <Flex id="logo">
-          <div id="toggleIcon">
-            <img src={menu} alt="" />
-          </div>
-
           <img src={logo} className="img-fluid" alt="" />
 
           <a href="#">Collections</a>
