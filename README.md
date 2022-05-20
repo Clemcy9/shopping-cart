@@ -42,8 +42,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [@clemcy9](https://github.com/Clemcy9/shopping-cart#screenshot)
+- Live Site URL: [ecommerce-cart](https://frontendmentor-ecommerce-cart.netlify.app/)
 
 ## My process
 
@@ -62,7 +62,7 @@ Users should be able to:
 ### What I learned
 Learnt how to use context api. 
 
-i.created a context api jsx file and exported it
+1.created a context api jsx file and exported it
 
 
 ```js
@@ -86,7 +86,7 @@ function UseCartToggle({ children }) {
 export { UseCartToggle, CartContext, ToggleContext };
 ```
 
-ii.imported the custom created context api and used in app component
+2.imported the custom created context api and used in app component
 
 ```js
 <UseCartToggle>
@@ -113,11 +113,10 @@ Learnt to implement sytling in styled components using props
     height: 25px;
     cursor: pointer;
     /* background-color: red; */
-  `;
+  `
 ```
 If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ### Continued development
 
