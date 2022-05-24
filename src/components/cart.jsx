@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 
 import Kumbh from "../resources/font/static/KumbhSans-Medium.ttf";
 
@@ -10,7 +10,21 @@ import { UseCartToggle, CartContext, ToggleContext } from "./useCartToggle";
 function Cart({ id, cartItems, emptyCart }) {
   //using context api for toggling show
   const show = useContext(CartContext);
-  // const toggleShow = useContext(ToggleContext);
+  const toggleShow = useContext(ToggleContext);
+
+  const cartRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (cartRef.current && !cartRef.current.contains(event.target)) {
+        toggleShow(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, [toggleShow]);
 
   const Container = styled.div`
     @font-face {
@@ -54,6 +68,11 @@ function Cart({ id, cartItems, emptyCart }) {
     & hr {
       margin: 0.8em 0;
     }
+    @media (max-width: 525px) {
+      width: 90vw;
+      right: 1em;
+      /* left: 0; */
+    }
   `;
   const CartBtn = styled.button`
     width: 12em;
@@ -84,16 +103,14 @@ function Cart({ id, cartItems, emptyCart }) {
     }
   `;
 
-  console.log(`this is show from cart ${show}`);
-
   return (
-    <Container show={show} id={id}>
+    <Container show={show} id={id} ref={cartRef}>
       <h6>Cart</h6>
       <hr />
       {cartItems > 0 ? (
         <>
           <Content cartItems={cartItems}>
-            <img src={product1} alt="" />
+            <img src={product1} alt="product" />
             <p>
               Fall Limited Edition Sneakers <br />
               $125.00 x {cartItems}

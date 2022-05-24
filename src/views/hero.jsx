@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import Modal from "react-modal";
 import "./hero.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
@@ -15,8 +14,8 @@ import product4 from "../resources/images/image-product-4.jpg";
 import closeBtn from "../resources/images/icon-close.svg";
 
 import { useState } from "react";
-import Cart from "../components/cart";
 import { CartContext, ToggleContext } from "../components/useCartToggle";
+import ModalView from "../components/modal";
 
 const Container = styled.div`
   width: 100vw;
@@ -289,62 +288,36 @@ function Hero({ increaseCart, decreaseCart, cartItems, emptyCart }) {
   const setShow = useContext(ToggleContext);
 
   // new import modal
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   const openModal = function () {
     setIsOpen(true);
   };
 
-  const afterOpenModal = function () {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
-  };
-
-  const closeModal = function () {
-    setIsOpen(false);
-  };
-
   return (
     <Container>
       <div>
         {/* <button onClick={openModal}>Open Modal</button> */}
-        <Modal
-          isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <img
-            src={closeBtn}
-            onClick={closeModal}
-            alt=""
-            style={{
-              position: "absolute",
-              right: "0",
-              top: "0",
-            }}
-          />
+        <ModalView isOpen={modalIsOpen} setIsOpen={() => setIsOpen(false)}>
           <Carousel thumbWidth={80} showStatus={false}>
             <div>
-              <img src={product1} />
+              <img src={product1} alt="product" />
               {/* <p className="legend">Legend 1</p> */}
             </div>
             <div>
-              <img src={product2} />
+              <img src={product2} alt="product" />
               {/* <p className="legend">Legend 2</p> */}
             </div>
             <div>
-              <img src={product3} />
+              <img src={product3} alt="product" />
               {/* <p className="legend">Legend 3</p> */}
             </div>
             <div>
-              <img src={product4} />
+              <img src={product4} alt="product" />
               {/* <p className="legend">Legend 4</p> */}
             </div>
           </Carousel>
-        </Modal>
+        </ModalView>
       </div>
 
       <Flex>
