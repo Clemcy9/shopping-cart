@@ -367,7 +367,7 @@ function Hero({ increaseCart, decreaseCart, cartItems, emptyCart }) {
             </h5>
           </div>
           <p id="slash-price">$250.00</p>
-          <div className="my-4 buttons">
+          <div className="my-2 buttons">
             <div className="btn-group" role="group">
               <button type="button" className="btn " onClick={decreaseCart}>
                 -

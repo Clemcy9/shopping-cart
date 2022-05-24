@@ -5,16 +5,13 @@ import { useState, useRef, useEffect } from "react";
 
 const Container = styled.div`
   display: block;
-  /* flex-direction: column; */
+  /* border: red 2px solid; */
   position: fixed;
   top: 0;
-  /* z-index: 1;
-  top: 1.5em;
-  width: 40%; */
-  width: 100vw;
+  width: ${(props) => (props.show ? "100vw" : "fit-content")};
   /* background-color: rgb(0, 0, 0); */
   background-color: ${(props) => (props.show ? "rgba(0, 0, 0, 0.7)" : "")};
-  z-index: ${(props) => (props.show ? "1" : "")};
+  z-index: ${(props) => (props.show ? "1" : "0")};
 
   height: 100vh;
   & img {
@@ -31,9 +28,9 @@ const Content = styled.div`
   position: absolute;
   height: 100%;
   top: 0;
-  width: 40%;
-
+  width: 50%;
   left: 0;
+
   & a {
     color: black;
     background-color: white;

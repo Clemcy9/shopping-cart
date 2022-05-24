@@ -20,11 +20,28 @@ const Container = styled.div`
   box-sizing: border-box;
   min-width: fit-content;
   max-width: 1660px;
-  position: relative;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
   @font-face {
     font-family: "Kumbh";
     src: url(${Kumbh});
   }
+
+  & #cart {
+    /* z-index: 1; */
+    cursor: pointer;
+  }
+
+  & #cart span {
+    position: relative;
+    top: -10px;
+    right: 5px;
+    background-color: hsl(26, 100%, 55%);
+    color: white;
+  }
+
   & a {
     margin: 0;
     padding: 0;
