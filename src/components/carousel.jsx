@@ -34,7 +34,7 @@ const Slides = styled.div`
       max-width: 100%;
     }
 
-    height: 60vh;
+    height: 60vh; //this helps in scaling for large screen sizes
   }
 `;
 
