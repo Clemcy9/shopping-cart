@@ -15,7 +15,7 @@ const Container = styled.div`
   max-width: 100%;
   position: relative;
   margin: 0 auto;
-  border: blue 4px solid;
+  /* border: blue 4px solid; */
 `;
 
 const Slides = styled.div`
