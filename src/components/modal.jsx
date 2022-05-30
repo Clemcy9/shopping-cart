@@ -19,15 +19,15 @@ const ModalParent = styled.div`
 
 const Content = styled.div`
   /* background-color: #fefefe; */
-  margin: 15% auto;
+  margin: 1% auto;
   padding: 20px;
   /* border: 1px solid #888; */
   /* width: 50%; */
-  /* height: 80%; */
+  height: 80%;
   width: fit-content;
   z-index: 1;
   position: relative;
-  top: -5em;
+  top: -2em;
 `;
 
 const CloseBtn = styled.span`

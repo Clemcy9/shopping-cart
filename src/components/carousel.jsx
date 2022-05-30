@@ -9,11 +9,13 @@ import prev from "../resources/images/icon-previous.svg";
 // `;
 
 const Container = styled.div`
-  width: 500px;
+  width: 400px; //turned off so as to depend on heigth for its value
+  width: fit-content;
+  /* height: 100vh; */
   max-width: 100%;
   position: relative;
   margin: 0 auto;
-  /* border: blue 4px solid; */
+  border: blue 4px solid;
 `;
 
 const Slides = styled.div`
@@ -25,14 +27,21 @@ const Slides = styled.div`
   place-content: center;
 
   & img {
-    width: 100%;
+    /* width: 100%; */
+
+    @media (max-width: 524px) {
+      height: auto; //enlargement of pics depends on the height rather than width thus solving overflow issues
+      max-width: 100%;
+    }
+
+    height: 60vh;
   }
 `;
 
 const NavIcon = styled.img`
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: 40%;
   width: 4em;
   margin-top: -22px;
   padding: 16px;
@@ -69,12 +78,17 @@ const Thumbnail = styled.div`
   display: flex;
   /* place-content: center; */
   justify-content: center;
+  overflow-x: scroll;
 `;
 
 const Thumbs = styled.img`
-  margin: 0.3em auto;
-  width: calc((100%) / 1.1);
-  height: auto;
+  @media (max-width: 524px) {
+    width: calc((100%) / 1.1);
+    height: auto;
+  }
+  margin: 0.3em;
+  height: 14vh;
+  width: auto;
   cursor: pointer;
   opacity: ${(props) => (props.where === props.current ? "0.5" : "1")};
 
