@@ -115,6 +115,8 @@ Learnt to implement sytling in styled components using props
     /* background-color: red; */
   `
 ```
+Also got acquinted to publishing on netlify
+
 If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
 
 
