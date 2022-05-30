@@ -1,13 +1,10 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import Modal from "react-modal";
 import "./hero.css";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
 import { device } from "../components/mediaBreakPoints";
 
 import Kumbh from "../resources/font/static/KumbhSans-Medium.ttf";
-
+import Carousel from "../components/carousel";
 import product1 from "../resources/images/image-product-1.jpg";
 import product2 from "../resources/images/image-product-2.jpg";
 import product3 from "../resources/images/image-product-3.jpg";
@@ -15,8 +12,8 @@ import product4 from "../resources/images/image-product-4.jpg";
 import closeBtn from "../resources/images/icon-close.svg";
 
 import { useState } from "react";
-import Cart from "../components/cart";
 import { CartContext, ToggleContext } from "../components/useCartToggle";
+import ModalView from "../components/modal";
 
 const Container = styled.div`
   width: 100vw;
@@ -40,7 +37,10 @@ const Container = styled.div`
     color: hsl(219, 9%, 45%);
   }
   @media ${device.mobileS} {
-    padding: 1em 2em;
+    /* padding: 1em 2em; */
+    & .child2 {
+      padding: 0.5em 1em;
+    }
   }
 `;
 
@@ -116,6 +116,7 @@ const Flex = styled.div`
     line-height: 1.2em;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   & #cart-btn button {
@@ -267,112 +268,33 @@ const Flex = styled.div`
   }
 `;
 
-const customStyles = {
-  content: {
-    top: "50%",
-    backgroundColor: "",
-    left: "50%",
-    width: "40.3%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    border: "none",
-    padding: "0",
-    height: "auto",
-  },
-};
-
 function Hero({ increaseCart, decreaseCart, cartItems, emptyCart }) {
   // toggle for cart context api
   const show = useContext(CartContext);
   const setShow = useContext(ToggleContext);
 
   // new import modal
-  let subtitle;
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  const openModal = function () {
-    setIsOpen(true);
-  };
-
-  const afterOpenModal = function () {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
-  };
-
-  const closeModal = function () {
-    setIsOpen(false);
-  };
+  const images = [product1, product2, product3, product4];
+  console.log(`image size: ${images.length}`);
 
   return (
     <Container>
       <div>
         {/* <button onClick={openModal}>Open Modal</button> */}
-        <Modal
-          isOpen={modalIsOpen}
-          onAfterOpen={afterOpenModal}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <img
-            src={closeBtn}
-            onClick={closeModal}
-            alt=""
-            style={{
-              position: "absolute",
-              right: "0",
-              top: "0",
-            }}
-          />
-          <Carousel thumbWidth={80} showStatus={false}>
-            <div>
-              <img src={product1} />
-              {/* <p className="legend">Legend 1</p> */}
-            </div>
-            <div>
-              <img src={product2} />
-              {/* <p className="legend">Legend 2</p> */}
-            </div>
-            <div>
-              <img src={product3} />
-              {/* <p className="legend">Legend 3</p> */}
-            </div>
-            <div>
-              <img src={product4} />
-              {/* <p className="legend">Legend 4</p> */}
-            </div>
-          </Carousel>
-        </Modal>
+        <ModalView isOpen={modalIsOpen} setIsOpen={() => setIsOpen(false)}>
+          {/* Carousel placement */}
+          <Carousel size={images.length}>{images}</Carousel>
+        </ModalView>
       </div>
 
       <Flex>
         <div className="child1">
           {/* <img src={product1} alt="" id="product-img" /> */}
           {/* carousel starts */}
-          <Carousel
-            thumbWidth={80}
-            showStatus={false}
-            showArrows={false}
-            onClickItem={openModal}
-          >
-            <div>
-              <img src={product1} />
-              {/* <p className="legend">Legend 1</p> */}
-            </div>
-            <div>
-              <img src={product2} />
-              {/* <p className="legend">Legend 2</p> */}
-            </div>
-            <div>
-              <img src={product3} />
-              {/* <p className="legend">Legend 3</p> */}
-            </div>
-            <div>
-              <img src={product4} />
-              {/* <p className="legend">Legend 4</p> */}
-            </div>
+          <Carousel size={images.length} functionToCall={setIsOpen}>
+            {images}
           </Carousel>
           {/* carousel ends */}
         </div>
@@ -394,7 +316,7 @@ function Hero({ increaseCart, decreaseCart, cartItems, emptyCart }) {
             </h5>
           </div>
           <p id="slash-price">$250.00</p>
-          <div className="my-4 buttons">
+          <div className="my-2 buttons">
             <div className="btn-group" role="group">
               <button type="button" className="btn " onClick={decreaseCart}>
                 -

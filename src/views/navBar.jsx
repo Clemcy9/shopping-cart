@@ -6,7 +6,7 @@ import menu from "../resources/images/icon-menu.svg";
 import Kumbh from "../resources/font/static/KumbhSans-Medium.ttf";
 
 import { device } from "../components/mediaBreakPoints";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Cart from "../components/cart";
 import { CartContext, ToggleContext } from "../components/useCartToggle";
 import DropMenu from "./dropdown-menu";
@@ -20,11 +20,28 @@ const Container = styled.div`
   box-sizing: border-box;
   min-width: fit-content;
   max-width: 1660px;
-  position: relative;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
   @font-face {
     font-family: "Kumbh";
     src: url(${Kumbh});
   }
+
+  & #cart {
+    /* z-index: 1; */
+    cursor: pointer;
+  }
+
+  & #cart span {
+    position: relative;
+    top: -10px;
+    right: 5px;
+    background-color: hsl(26, 100%, 55%);
+    color: white;
+  }
+
   & a {
     margin: 0;
     padding: 0;
@@ -150,11 +167,11 @@ function Nav({ cartItems, emptyCart }) {
         <Flex id="logo">
           <img src={logo} className="img-fluid" alt="" />
 
-          <a href="#">Collections</a>
-          <a href="#">Men</a>
-          <a href="#">Women</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
+          <a href="#collections">Collections</a>
+          <a href="#menu">Menu</a>
+          <a href="#women">Women</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
         </Flex>
         <Flex>
           <div id="cart" onClick={() => cartToggle(!isCart)}>
@@ -168,7 +185,7 @@ function Nav({ cartItems, emptyCart }) {
             )}
           </div>
 
-          <a href="#">
+          <a>
             <img src={avatar} style={{ width: "40px" }} alt="" id="avatar" />
           </a>
         </Flex>
