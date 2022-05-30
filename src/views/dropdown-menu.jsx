@@ -9,11 +9,10 @@ const Container = styled.div`
   position: fixed;
   top: 0;
   width: ${(props) => (props.show ? "100vw" : "fit-content")};
+  height: ${(props) => (props.show ? "100vh" : "fit-content")};
   /* background-color: rgb(0, 0, 0); */
   background-color: ${(props) => (props.show ? "rgba(0, 0, 0, 0.7)" : "")};
   z-index: ${(props) => (props.show ? "1" : "0")};
-
-  height: 100vh;
   & img {
     width: 20px;
   }

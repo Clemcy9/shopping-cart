@@ -6,7 +6,7 @@ import menu from "../resources/images/icon-menu.svg";
 import Kumbh from "../resources/font/static/KumbhSans-Medium.ttf";
 
 import { device } from "../components/mediaBreakPoints";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Cart from "../components/cart";
 import { CartContext, ToggleContext } from "../components/useCartToggle";
 import DropMenu from "./dropdown-menu";
@@ -167,11 +167,11 @@ function Nav({ cartItems, emptyCart }) {
         <Flex id="logo">
           <img src={logo} className="img-fluid" alt="" />
 
-          <a href="#">Collections</a>
-          <a href="#">Men</a>
-          <a href="#">Women</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
+          <a href="#collections">Collections</a>
+          <a href="#menu">Menu</a>
+          <a href="#women">Women</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
         </Flex>
         <Flex>
           <div id="cart" onClick={() => cartToggle(!isCart)}>
@@ -185,7 +185,7 @@ function Nav({ cartItems, emptyCart }) {
             )}
           </div>
 
-          <a href="#">
+          <a>
             <img src={avatar} style={{ width: "40px" }} alt="" id="avatar" />
           </a>
         </Flex>

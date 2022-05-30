@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import "./hero.css";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
 import { device } from "../components/mediaBreakPoints";
 
 import Kumbh from "../resources/font/static/KumbhSans-Medium.ttf";
-
+import Carousel from "../components/carousel";
 import product1 from "../resources/images/image-product-1.jpg";
 import product2 from "../resources/images/image-product-2.jpg";
 import product3 from "../resources/images/image-product-3.jpg";
@@ -39,7 +37,10 @@ const Container = styled.div`
     color: hsl(219, 9%, 45%);
   }
   @media ${device.mobileS} {
-    padding: 1em 2em;
+    /* padding: 1em 2em; */
+    & .child2 {
+      padding: 0.5em 1em;
+    }
   }
 `;
 
@@ -115,6 +116,7 @@ const Flex = styled.div`
     line-height: 1.2em;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   & #cart-btn button {
@@ -266,22 +268,6 @@ const Flex = styled.div`
   }
 `;
 
-const customStyles = {
-  content: {
-    top: "50%",
-    backgroundColor: "",
-    left: "50%",
-    width: "40.3%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    border: "none",
-    padding: "0",
-    height: "auto",
-  },
-};
-
 function Hero({ increaseCart, decreaseCart, cartItems, emptyCart }) {
   // toggle for cart context api
   const show = useContext(CartContext);
@@ -290,33 +276,16 @@ function Hero({ increaseCart, decreaseCart, cartItems, emptyCart }) {
   // new import modal
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  const openModal = function () {
-    setIsOpen(true);
-  };
+  const images = [product1, product2, product3, product4];
+  console.log(`image size: ${images.length}`);
 
   return (
     <Container>
       <div>
         {/* <button onClick={openModal}>Open Modal</button> */}
         <ModalView isOpen={modalIsOpen} setIsOpen={() => setIsOpen(false)}>
-          <Carousel thumbWidth={80} showStatus={false}>
-            <div>
-              <img src={product1} alt="product" />
-              {/* <p className="legend">Legend 1</p> */}
-            </div>
-            <div>
-              <img src={product2} alt="product" />
-              {/* <p className="legend">Legend 2</p> */}
-            </div>
-            <div>
-              <img src={product3} alt="product" />
-              {/* <p className="legend">Legend 3</p> */}
-            </div>
-            <div>
-              <img src={product4} alt="product" />
-              {/* <p className="legend">Legend 4</p> */}
-            </div>
-          </Carousel>
+          {/* Carousel placement */}
+          <Carousel size={images.length}>{images}</Carousel>
         </ModalView>
       </div>
 
@@ -324,28 +293,8 @@ function Hero({ increaseCart, decreaseCart, cartItems, emptyCart }) {
         <div className="child1">
           {/* <img src={product1} alt="" id="product-img" /> */}
           {/* carousel starts */}
-          <Carousel
-            thumbWidth={80}
-            showStatus={false}
-            showArrows={false}
-            onClickItem={openModal}
-          >
-            <div>
-              <img src={product1} />
-              {/* <p className="legend">Legend 1</p> */}
-            </div>
-            <div>
-              <img src={product2} />
-              {/* <p className="legend">Legend 2</p> */}
-            </div>
-            <div>
-              <img src={product3} />
-              {/* <p className="legend">Legend 3</p> */}
-            </div>
-            <div>
-              <img src={product4} />
-              {/* <p className="legend">Legend 4</p> */}
-            </div>
+          <Carousel size={images.length} functionToCall={setIsOpen}>
+            {images}
           </Carousel>
           {/* carousel ends */}
         </div>

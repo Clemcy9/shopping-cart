@@ -4,7 +4,9 @@ import closeBtn from "../resources/images/icon-close.svg";
 
 const ModalParent = styled.div`
   position: fixed;
-  display: ${(props) => (props.show ? "block" : "none")};
+  display: ${(props) => (props.show ? "flex" : "none")};
+  justify-content: center;
+  align-items: center;
   z-index: 1;
   left: 0;
   top: 0;
@@ -12,7 +14,7 @@ const ModalParent = styled.div`
   height: 100%;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.7);
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 const Content = styled.div`
@@ -20,12 +22,18 @@ const Content = styled.div`
   margin: 15% auto;
   padding: 20px;
   /* border: 1px solid #888; */
-  width: 80%;
+  /* width: 50%; */
+  /* height: 80%; */
+  width: fit-content;
   z-index: 1;
+  position: relative;
+  top: -5em;
 `;
 
 const CloseBtn = styled.span`
-  position: relative;
+  position: absolute;
+  right: 0.7em;
+  top: -1em;
   margin-bottom: 0.5em;
   color: white;
   float: right;
